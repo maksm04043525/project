@@ -2,6 +2,7 @@ import '../App.css';
 import { useState } from 'react';
 import UserList from '../components/UserList';
 import NavBar from '../components/NavBar/NavBar';
+import MyModal from '../components/MyModal/MyModal';
 
 const Users =(props)=> {
   
@@ -52,52 +53,58 @@ const Users =(props)=> {
   
   
   console.log(user);
+  const [modal, setModal]=useState(false)
   return ( 
     <div >
       <div className="container">
         <div className="row">
           <div className="col s6">
             <a className="waves-effect waves-light btn m-1" 
-            onClick={()=>setShowAddUser(!showAddUser)}>
+            onClick={()=>setModal(true)}>
               Add Users</a>
           </div>
-          {showAddUser && <div className="col s6">
-              <div className="input-field col s6">
-              <i className="material-icons prefix">account_circle</i>
-
-              <input 
-              onChange={onChange} 
-              id="name"
-              type="text"
-              className="validate"
-              placeholder="First Name"
-              value={user.name}
-              />
-
-            </div>
+          <MyModal visible={modal} setVisible={setModal}>
+          {
+            <div className="col s6">
             <div className="input-field col s6">
-              <i className="material-icons prefix">phone</i>
-              
-              <input 
-              onChange={onChange} 
-              id="phone" 
-              type="tel" 
-              className="validate" 
-              placeholder="Phone Number"
-              value={user.phone}
-              />
+            <i className="material-icons prefix">account_circle</i>
 
-            </div>
-            <div className="col s6">
-              <a className="waves-effect waves-light btn m-1" onClick={()=>AddUser()}>Add</a>
-            </div>
-            <div className="col s6">
-              <a className="waves-effect waves-light btn m-1" onClick={()=>cancel()} >Cancel</a>
-            </div>
+            <input 
+            onChange={onChange} 
+            id="name"
+            type="text"
+            className="validate"
+            placeholder="First Name"
+            value={user.name}
+            />
+
           </div>
-          }
+          <div className="input-field col s6">
+            <i className="material-icons prefix">phone</i>
+            
+            <input 
+            onChange={onChange} 
+            id="phone" 
+            type="tel" 
+            className="validate" 
+            placeholder="Phone Number"
+            value={user.phone}
+            />
+
+          </div>
+          <div className="col s6">
+            <a className="waves-effect waves-light btn m-1" onClick={()=>AddUser()}>Add</a>
+          </div>
+          <div className="col s6">
+            <a className="waves-effect waves-light btn m-1" onClick={()=>cancel()} >Cancel</a>
+          </div>
         </div>
-        <UserList search removeUser={deleteUser}>{users}</UserList>
+          }
+          </MyModal>
+        </div>
+        <UserList search removeUser={deleteUser}>
+          {users}
+        </UserList>
       </div>
     </div>
   );
