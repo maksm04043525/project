@@ -42,6 +42,8 @@ const UserList = (props) => {
           <tr>
               <th>Name</th>
               <th>Phone number</th>
+              <th>User Name</th>
+              <th>Email</th>
               <th>Action</th>
           </tr>
         </thead>
@@ -50,9 +52,12 @@ const UserList = (props) => {
               <tr key={user.id}>
                 <td>{user.name}</td>
                 <td>{user.phone}</td>
+                <td>{user.username}</td>
+                <td>{user.email}</td>
                 <td><i className="material-icons"
                   onClick={()=>props.removeUser(user.id)}
                 >delete</i></td>
+                
                 </tr>
             )}
         </tbody>

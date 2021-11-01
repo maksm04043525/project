@@ -1,31 +1,20 @@
 import '../App.css';
-import { useState } from 'react';
+import { useEffect,useState } from 'react';
 import UserList from '../components/UserList';
 import NavBar from '../components/NavBar/NavBar';
 import MyModal from '../components/MyModal/MyModal';
+import axios from 'axios';
+import Loader from 'react-loader-spinner';
 
 const Users =(props)=> {
-  
-  const [showAddUser, setShowAddUser] = useState(false);
-  const [users,setUsers]=useState(
-    [
-      {
-      id:1,
-      name:'Макс',
-      phone:'80447669504',
-      },
-      {
-      id:2, 
-      name:'Ваня',
-      phone:'80448553604',
-      },
-      {
-      id:3,  
-      name:'Влад',
-      phone:'80293650202',
-      }
-    ]
-  );
+  useEffect(() => {
+    fetchUsers()
+  },[])
+  const fetchUsers= async ()=>{
+    const users =await axios.get('https://jsonplaceholder.typicode.com/users')
+    setUsers(users.data);
+  }
+  const [users,setUsers]=useState("");
   const [user,setUser]=useState({name:'',phone:''});
   const onChange= (e)=>{
     if(e.target.id == "name"){
@@ -55,7 +44,6 @@ const Users =(props)=> {
   console.log(user);
   const [modal, setModal]=useState(false)
   return ( 
-    <div >
       <div className="container">
         <div className="row">
           <div className="col s6">
@@ -66,19 +54,19 @@ const Users =(props)=> {
           <MyModal visible={modal} setVisible={setModal}>
           {
             <div className="col s6">
-            <div className="input-field col s6">
-            <i className="material-icons prefix">account_circle</i>
+              <div className="input-field col s6">
+              <i className="material-icons prefix">account_circle</i>
 
-            <input 
-            onChange={onChange} 
-            id="name"
-            type="text"
-            className="validate"
-            placeholder="First Name"
-            value={user.name}
-            />
+              <input 
+              onChange={onChange} 
+              id="name"
+              type="text"
+              className="validate"
+              placeholder="First Name"
+              value={user.name}
+              />
 
-          </div>
+            </div>
           <div className="input-field col s6">
             <i className="material-icons prefix">phone</i>
             
@@ -102,11 +90,22 @@ const Users =(props)=> {
           }
           </MyModal>
         </div>
-        <UserList search removeUser={deleteUser}>
+        {users?(
+          <UserList search removeUser={deleteUser}>
           {users}
         </UserList>
+        ):(
+          <Loader
+        type="Puff"
+        color="#00BFFF"
+        height={100}
+        width={100}
+        timeout={3000} //3 secs
+      />
+        )
+        }
       </div>
-    </div>
+    
   );
 }
 
