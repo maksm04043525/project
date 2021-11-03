@@ -55,55 +55,55 @@ const Users =(props)=> {
           {
             <div className="col s6">
               <div className="input-field col s6">
-              <i className="material-icons prefix">account_circle</i>
+                <i className="material-icons prefix">account_circle</i>
 
-              <input 
-              onChange={onChange} 
-              id="name"
-              type="text"
-              className="validate"
-              placeholder="First Name"
-              value={user.name}
-              />
+                <input 
+                onChange={onChange} 
+                id="name"
+                type="text"
+                className="validate"
+                placeholder="First Name"
+                value={user.name}
+                />
 
+              </div>
+
+              <div className="input-field col s6">
+                <i className="material-icons prefix">phone</i>
+                
+                <input 
+                onChange={onChange} 
+                id="phone" 
+                type="tel" 
+                className="validate" 
+                placeholder="Phone Number"
+                value={user.phone}
+                />
+              </div>
+              <div className="col s6">
+                <a className="waves-effect waves-light btn m-1" onClick={()=>AddUser()}>Add</a>
+              </div>
+              <div className="col s6">
+                <a className="waves-effect waves-light btn m-1" onClick={()=>cancel()} >Cancel</a>
+              </div>
             </div>
-          <div className="input-field col s6">
-            <i className="material-icons prefix">phone</i>
-            
-            <input 
-            onChange={onChange} 
-            id="phone" 
-            type="tel" 
-            className="validate" 
-            placeholder="Phone Number"
-            value={user.phone}
-            />
-
-          </div>
-          <div className="col s6">
-            <a className="waves-effect waves-light btn m-1" onClick={()=>AddUser()}>Add</a>
-          </div>
-          <div className="col s6">
-            <a className="waves-effect waves-light btn m-1" onClick={()=>cancel()} >Cancel</a>
-          </div>
-        </div>
           }
           </MyModal>
         </div>
-        {users?(
+          {users?(
           <UserList search removeUser={deleteUser}>
-          {users}
-        </UserList>
-        ):(
-          <Loader
-        type="Puff"
-        color="#00BFFF"
-        height={100}
-        width={100}
-        timeout={3000} //3 secs
-      />
-        )
-        }
+            {users}
+          </UserList>
+          ):(
+            <Loader
+          type="Puff"
+          color="#00BFFF"
+          height={100}
+          width={100}
+          timeout={3000} //3 secs
+        />
+          )
+          }
       </div>
     
   );
