@@ -1,16 +1,27 @@
-import React from "react";
-import { Switch, Route } from "react-router";
+import { useContext } from "react";
+import { Switch, Route, Redirect } from "react-router";
+import { useState } from "react/cjs/react.development";
+import AuthContext from "../context";
 import Devices from "../pages/Devices";
-import Post from "../pages/Post";
+import Login from "../pages/Login";
 import Users from "../pages/Users";
-const AppRouter=()=>{
-    return(
+
+const AppRouter = () => {
+    const {isAuth,isLoading}=useContext(AuthContext)
+    console.log(isAuth);
+    return (
+        isAuth?
         <Switch>
-            <Route path="/users" component={Users}/>
-            <Route path="/devices" component={Devices}/>
-            <Route path="/post" component={Post}/>
+            <Route path="/users" component={Users} />
+            <Route path="/devices" component={Devices} />
+            <Redirect to="/devices" />
+        </Switch>
+        :
+        <Switch>
+            <Route path="/login" component={Login} />
+            <Redirect to="/login" />
         </Switch>
     )
-        
+
 }
 export default AppRouter
