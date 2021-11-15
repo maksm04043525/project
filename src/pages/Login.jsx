@@ -27,6 +27,7 @@ const Login = () => {
 
         <div className="container">
             <div className="littleContainer">
+                <h2>Авторизуйтесь</h2>
                 <form id="login">
                     <div className="input-field row s6">
                         <i className="material-icons prefix">account_circle</i>

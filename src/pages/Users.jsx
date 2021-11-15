@@ -1,7 +1,6 @@
 import '../App.css';
 import { useEffect,useState } from 'react';
 import UserList from '../components/UserList';
-import NavBar from '../components/NavBar/NavBar';
 import MyModal from '../components/MyModal/MyModal';
 import axios from 'axios';
 import Loader from 'react-loader-spinner';
