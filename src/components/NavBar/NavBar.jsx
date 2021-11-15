@@ -11,7 +11,7 @@ const NavBar = () => {
   return (
     <nav>
       <div className="nav-wrapper sapphire">
-        <a href="#" className="brand-logo">Logo</a>
+        <a href="#" className="brand-logo">Gbplf</a>
         <ul id="nav-mobile" className="right hide-on-med-and-down">
           <li><Link to="/users">Users</Link></li>
           <li><Link to="/devices">Devices</Link></li>
