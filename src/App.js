@@ -12,6 +12,7 @@ const App = (props) => {
     if(localStorage.getItem('auth')){
       setIsAuth(true);
     }
+    setLoading(false)
   }, [])
 
   return (

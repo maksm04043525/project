@@ -11,11 +11,12 @@ const NavBar = () => {
   return (
     <nav>
       <div className="nav-wrapper sapphire">
-        <a href="#" className="brand-logo">Gbplf</a>
+        <a href="#" className="brand-logo">ZXC 1337-7</a>
         <ul id="nav-mobile" className="right hide-on-med-and-down">
           <li><Link to="/users">Users</Link></li>
           <li><Link to="/devices">Devices</Link></li>
           <li><Link to="/post">Post</Link></li>
+          <li><Link to="/news">News</Link></li>
           <li><Link to="/login">login</Link></li>
           <li><button onClick={logout} className="waves-effect waves-light btn">Logout</button></li>
         </ul>

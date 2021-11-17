@@ -4,10 +4,11 @@ import axios from 'axios';
 import ReactPaginate from 'react-paginate';
 
 const Post = () => {
-  const trigger=useRef(null)
+  const [postLoading, setPostLoading]=useState(false);
+  const trigger=useRef(null);
   const [page, setPage] = useState(0);
   const [totalPage, setTotalPage] = useState(10);
-  const observer=useRef(null)
+  const observer=useRef(null);
   const chanePage = (page) => {
     setPage(page.selected + 1)
   }
@@ -17,6 +18,9 @@ const Post = () => {
   const [filter, setFilter] = useState(null);
 
   useEffect(() => {
+    if(postLoading)return;
+    if(page>10)return;
+    if(observer.current) observer.current.disconnect();
     var callback=function(entries, observer){
       if(entries[0].isIntersecting){
         setPage(page+1)
@@ -25,7 +29,7 @@ const Post = () => {
     };
     observer.current = new IntersectionObserver(callback);
     observer.current.observe(trigger.current)
-  }, []);
+  }, [postLoading]);
 
   useEffect(() => {
     fetchPost()
@@ -34,6 +38,7 @@ const Post = () => {
 
 
   const fetchPost = async () => {
+    setPostLoading(true);
     const count = await axios.get('https://jsonplaceholder.typicode.com/posts')
     setTotalPage(count.data.length / limit);
     const fetchPost = await axios.get('https://jsonplaceholder.typicode.com/posts', {
@@ -43,6 +48,7 @@ const Post = () => {
       }
     });
     setPosts([...posts,...fetchPost.data]);
+    setPostLoading(false)
   }
 
   const deletePost = (id) => {
@@ -96,7 +102,7 @@ const Post = () => {
           )}
         </div>
       </div>
-      <div ref={trigger} className="card red darken-4">I am reference</div>
+      <div ref={trigger} ></div>
       <ReactPaginate
         className="littleContainer"
         className="pagination"
