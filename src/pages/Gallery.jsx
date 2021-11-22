@@ -3,50 +3,61 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 const Gallery = () => {
-    useEffect(() => {
-        fetchPhotos()
-    }, [])
-    const [photos, setPhotos] = useState("");
-    const [likes, setLikes]=useState(0);
+  useEffect(() => {
+    fetchPhotos()
+  }, [])
+  const [photos, setPhotos] = useState("");
+  const [likes, setLikes] = useState(0);
+  const [filter, setFilter] = useState(null);
 
+  const like = (id) => {
+    setLikes({ ...likes,like:1 })
 
-    const like = (id)=>{
+  }
+  
+  const fetchPhotos = async () => {
+    const Photos = await axios.get('https://jsonplaceholder.typicode.com/albums/1/photos')
+    setPhotos(Photos.data.map((photo) => ({...photo,like:0} )))
+  }
+ console.log(photos)
 
-          setLikes(likes+1)
+  const deletePhoto = (id, i) => {
+    const confirm = window.confirm("это точно нужно удалить?")
+    if (confirm) {
+      setPhotos(photos.filter((photos) => photos.id !== id))
 
     }
-
-    const fetchPhotos = async () => {
-        const Photos = await axios.get('https://jsonplaceholder.typicode.com/albums/1/photos')
-        setPhotos(Photos.data)
-    }
-    return (
-        <div className="container">
-            <h3>Gallery</h3>
-              <div className="row">
-            {photos && photos.map((photo) =>
-                <div className="col s4">
-                    <div className="photoBox">
-                        <div className="photoImg">
-                          <img src={photo.url} key={photo.id}/>
-                        </div>
-                        <div className="photoInfo">
-                          <div className="buttonLike">
-                              <i className="material-icons prefix"
-                              onClick={()=>like(photo.id)}>
-                                thumb_up
-                              </i>
-                          </div>
-                          <div className="likeCounter" >
-                            <p>{likes}</p>
-                          </div>
-                        </div>
-                    </div>
+  }
+  return (
+    <div className="container">
+      <h3>Gallery</h3>
+      <div className="row">
+        {photos && photos.map((photo, i) =>
+          <div className="col s4">
+            <div className="photoBox">
+              <div className="photoImg">
+                <img src={photo.url} key={photo.id} />
+              </div>
+              <div className="photoInfo">
+                <div className="buttonLike">
+                  <i className="material-icons prefix"
+                    onClick={() => like(photo.id)}>
+                    thumb_up
+                  </i>
                 </div>
-            )}
+                <div className="likeCounter" >
+                  <p>{photo.like}</p>
+                </div>
+                <div>
+                  <button onClick={() => deletePhoto(photo.id,i)}>Удалить</button>
+                </div>
+              </div>
             </div>
-        </div>
-    )
+          </div>
+        )}
+      </div>
+    </div>
+  )
 }
 
 export default Gallery;
