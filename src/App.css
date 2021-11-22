@@ -5,7 +5,7 @@
   width: 100%;
   height: auto;
   background-color: #89b4f5;
-  
+
 }
 
 .sapphire{
@@ -15,4 +15,44 @@
   margin: auto;
   width: 50%;
   text-align: center;
+}
+.photoBox{
+  width: 100%;
+  height: 400px;
+
+  margin: 0px 0px 20px 0px;
+
+}
+.photoImg{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 80%;
+}
+.photoImg img{
+  margin: 0 auto;
+  width: 90%;
+  height: 98%;
+}
+.photoInfo{
+  display: grid;
+  grid-template-columns:20% 80%;
+  width: 100%;
+  height: 20%;
+
+
+}
+.likeCounter{
+  width: 100%;
+}
+.likeCounter p{
+  margin-top:15px;
+  font-size: 25px;
+}
+.buttonLike{
+  color:gray;
+  width: 100%;
+}
+.buttonLike i{
+ margin: 1.3vw 0 0 1.3vw;
 }

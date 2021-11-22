@@ -6,7 +6,7 @@ import Devices from "../pages/Devices";
 import Login from "../pages/Login";
 import Users from "../pages/Users";
 import Post from "../pages/Post";
-import News from "../pages/News";
+import Gallery from "../pages/Gallery";
 import Loader from "react-loader-spinner";
 
 const AppRouter = () => {
@@ -27,7 +27,7 @@ const AppRouter = () => {
             <Route path="/users" component={Users} />
             <Route path="/devices" component={Devices} />
             <Route path="/post" component={Post} />
-            <Route path="/news" component={News}/>
+            <Route path="/gallery" component={Gallery}/>
             <Redirect to="/devices" />
         </Switch>
         :

@@ -23,7 +23,6 @@ const Users =(props)=> {
       setUser({...user,phone: e.target.value})
     }
   }
-
   const AddUser=()=>{
     const id=Math.random()*1
     setUser({...user,id:id})
@@ -33,20 +32,16 @@ const Users =(props)=> {
   const cancel=()=>{
     setUser({name:'',phone:''})
   }
-
   const deleteUser = (id)=>{
     const confirm=window.confirm("это точно нужно удалить?")
     if(confirm)setUsers(users.filter((user)=>user.id !== id))
   }
-  
-  
-  console.log(user);
   const [modal, setModal]=useState(false)
-  return ( 
+  return (
       <div className="container">
         <div className="row">
           <div className="col s6">
-            <a className="waves-effect waves-light btn m-1" 
+            <a className="waves-effect waves-light btn m-1"
             onClick={()=>setModal(true)}>
               Add Users</a>
           </div>
@@ -56,8 +51,8 @@ const Users =(props)=> {
               <div className="input-field col s6">
                 <i className="material-icons prefix">account_circle</i>
 
-                <input 
-                onChange={onChange} 
+                <input
+                onChange={onChange}
                 id="name"
                 type="text"
                 className="validate"
@@ -69,12 +64,12 @@ const Users =(props)=> {
 
               <div className="input-field col s6">
                 <i className="material-icons prefix">phone</i>
-                
-                <input 
-                onChange={onChange} 
-                id="phone" 
-                type="tel" 
-                className="validate" 
+
+                <input
+                onChange={onChange}
+                id="phone"
+                type="tel"
+                className="validate"
                 placeholder="Phone Number"
                 value={user.phone}
                 />
@@ -104,7 +99,7 @@ const Users =(props)=> {
           )
           }
       </div>
-    
+
   );
 }
 

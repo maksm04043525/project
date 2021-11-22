@@ -16,7 +16,7 @@ const NavBar = () => {
           <li><Link to="/users">Users</Link></li>
           <li><Link to="/devices">Devices</Link></li>
           <li><Link to="/post">Post</Link></li>
-          <li><Link to="/news">News</Link></li>
+          <li><Link to="/gallery">Gallery</Link></li>
           <li><Link to="/login">login</Link></li>
           <li><button onClick={logout} className="waves-effect waves-light btn">Logout</button></li>
         </ul>
