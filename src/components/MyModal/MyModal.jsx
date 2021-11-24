@@ -4,7 +4,7 @@ const MyModal = ({children, visible, setVisible})=> {
     return(
     <div id="modal1" className={visible ? 'modal show-on-large z-up': 'modal'}>
         <div className="modal-content">
-            <h4>Modal Header</h4> 
+            <h4>Add User</h4> 
             {children}
         </div>
         <div className="modal-footer">

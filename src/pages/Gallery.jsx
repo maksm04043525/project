@@ -7,11 +7,11 @@ const Gallery = () => {
     fetchPhotos()
   }, [])
   const [photos, setPhotos] = useState("");
-  const [likes, setLikes] = useState(0);
   const [filter, setFilter] = useState(null);
 
   const like = (id) => {
-    setLikes({ ...likes,like:1 })
+
+    setPhotos(photos.map((photo)=> photo.id == id ? {...photo,like:1} : photo))
 
   }
   
@@ -28,6 +28,7 @@ const Gallery = () => {
 
     }
   }
+
   return (
     <div className="container">
       <h3>Gallery</h3>

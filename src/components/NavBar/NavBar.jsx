@@ -11,13 +11,15 @@ const NavBar = () => {
   return (
     <nav>
       <div className="nav-wrapper sapphire">
-        <a href="#" className="brand-logo">ZXC 1337-7</a>
-        <ul id="nav-mobile" className="right hide-on-med-and-down">
+        <a href="#" className="brand-logo center">Final Version</a>
+        <ul id="nav-mobile" className="left hide-on-med-and-down">
           <li><Link to="/users">Users</Link></li>
           <li><Link to="/devices">Devices</Link></li>
           <li><Link to="/post">Post</Link></li>
           <li><Link to="/gallery">Gallery</Link></li>
           <li><Link to="/login">login</Link></li>
+        </ul>
+        <ul id="nav-mobile" className="right hide-on-med-and-down">
           <li><button onClick={logout} className="waves-effect waves-light btn">Logout</button></li>
         </ul>
       </div>
